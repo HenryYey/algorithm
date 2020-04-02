@@ -15,7 +15,6 @@ var insertSort = function (dataSource) {
         dataSource.splice(index, 1);
         // 插入到j前面
         dataSource.splice(j, 0, current);
-        console.log(dataSource);
     }
     // 打印数组
     var endTime = new Date();
@@ -24,6 +23,7 @@ var insertSort = function (dataSource) {
         len: len,
         time: endTime.getTime() - startTime.getTime()
     };
+    console.log(dataSource);
     writeToJson4("insertSort" + len + "Result.json", JSON.stringify(dataResult));
 };
 // 执行函数

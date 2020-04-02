@@ -1,7 +1,7 @@
 const writeToJson4 = require("../util/index").writeToJson
 
 /**
- * 选择排序
+ * 插入排序
  */
 
 interface Result {
