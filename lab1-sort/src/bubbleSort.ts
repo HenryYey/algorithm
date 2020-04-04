@@ -1,5 +1,3 @@
-const writeToJson2 = require("../util/index").writeToJson
-
 /**
  * 冒泡排序
  */

@@ -1,6 +1,3 @@
-const writeToJson3 = require("../util/index").writeToJson
-const randomArray3 = require("../util/index").randomArray
-
 /**
  * 快速排序
  */

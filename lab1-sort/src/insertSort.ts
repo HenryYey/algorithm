@@ -1,5 +1,3 @@
-const writeToJson4 = require("../util/index").writeToJson
-
 /**
  * 插入排序
  */
