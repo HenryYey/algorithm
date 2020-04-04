@@ -1,5 +1,3 @@
-const writeToJson = require("../util/index").writeToJson
-
 /**
  * 选择排序
  */
@@ -9,7 +7,7 @@ interface Result {
   time: number
 }
 
-const selectSort = (dataSource: Array<number>) => {
+exports.selectSort = (dataSource: Array<number>) => {
   let len: number = dataSource.length;
   let startTime: Date = new Date();
 
@@ -27,17 +25,12 @@ const selectSort = (dataSource: Array<number>) => {
       dataSource[min] = temp;
     }
   }
-  // 打印数组
-  console.log(dataSource);
 
   let endTime: Date = new Date();
   // 统计结果
   const dataResult: Result = {
     len,
     time: endTime.getTime() - startTime.getTime()
-  } 
-  writeToJson("selectSort" + len + "Result.json", JSON.stringify(dataResult));
+  }
+  return dataResult;
 }
-// 执行函数
-selectSort([1, 2, 5, 4, 10, 8]);
-

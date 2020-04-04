@@ -1,5 +1,7 @@
-var writeToJson = require("../util/index").writeToJson;
-var selectSort = function (dataSource) {
+/**
+ * 选择排序
+ */
+exports.selectSort = function (dataSource) {
     var len = dataSource.length;
     var startTime = new Date();
     // 函数主体
@@ -16,16 +18,12 @@ var selectSort = function (dataSource) {
             dataSource[min] = temp;
         }
     }
-    // 打印数组
-    console.log(dataSource);
     var endTime = new Date();
     // 统计结果
     var dataResult = {
         len: len,
         time: endTime.getTime() - startTime.getTime()
     };
-    writeToJson("selectSort" + len + "Result.json", JSON.stringify(dataResult));
+    return dataResult;
 };
-// 执行函数
-selectSort([1, 2, 5, 4, 10, 8]);
 //# sourceMappingURL=selectSort.js.map

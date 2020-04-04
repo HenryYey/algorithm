@@ -9,7 +9,7 @@ interface Result {
   time: number
 }
 
-const bubbleSort = (dataSource: Array<number>) => {
+exports.bubbleSort = (dataSource: Array<number>) => {
   let len: number = dataSource.length;
   let startTime: Date = new Date();
 
@@ -23,8 +23,6 @@ const bubbleSort = (dataSource: Array<number>) => {
       }
     }
   }
-  // 打印数组
-  console.log(dataSource);
 
   let endTime: Date = new Date();
   // 统计结果
@@ -32,8 +30,5 @@ const bubbleSort = (dataSource: Array<number>) => {
     len,
     time: endTime.getTime() - startTime.getTime()
   } 
-  writeToJson2("bubbleSort" + len +"Result.json", JSON.stringify(dataResult));
+  return dataResult;  
 }
-// 执行函数
-bubbleSort([1, 2, 5, 4, 10, 8]);
-

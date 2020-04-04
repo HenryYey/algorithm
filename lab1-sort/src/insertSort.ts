@@ -9,7 +9,7 @@ interface Result {
   time: number
 }
 
-const insertSort = (dataSource: Array<number>) => {
+exports.insertSort = (dataSource: Array<number>) => {
   let len: number = dataSource.length;
   let startTime: Date = new Date();
 
@@ -27,7 +27,6 @@ const insertSort = (dataSource: Array<number>) => {
     // 插入到j前面
     dataSource.splice(j, 0, current);
   }
-  // 打印数组
 
   let endTime: Date = new Date();
   // 统计结果
@@ -35,9 +34,5 @@ const insertSort = (dataSource: Array<number>) => {
     len,
     time: endTime.getTime() - startTime.getTime()
   } 
-  console.log(dataSource);
-  writeToJson4("insertSort" + len + "Result.json", JSON.stringify(dataResult));
+  return dataResult;
 }
-// 执行函数
-insertSort([6, 3, 5, 7, 0]);
-

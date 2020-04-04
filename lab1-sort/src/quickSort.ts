@@ -1,4 +1,5 @@
 const writeToJson3 = require("../util/index").writeToJson
+const randomArray3 = require("../util/index").randomArray
 
 /**
  * 快速排序
@@ -8,6 +9,7 @@ interface Result {
   len: number,
   time: number
 }
+
 const baseIndex = (arr: Array<number>, low: number, high: number) => {
   // 定基准
   const base = arr[low];
@@ -31,16 +33,19 @@ const quickSort = (dataSource: Array<number>, low: number, high: number) => {
   }
 }
 
-const data = [1, 22, 44, 4,123123,123, 10, 8];
-let len = data.length;
-let startTime: Date = new Date();
+// 执行主函数
+exports.quickMain = (data: Array<number>) => {
+  let len = data.length;
+  let startTime: Date = new Date();
 
-// 执行函数
-quickSort(data, 0, data.length - 1);
-let endTime: Date = new Date();
+  // 执行函数
+  quickSort(data, 0, data.length - 1);
+  let endTime: Date = new Date();
 
-const dataResult: Result = {
-  len,
-  time: endTime.getTime() - startTime.getTime()
+  const dataResult: Result = {
+    len,
+    time: endTime.getTime() - startTime.getTime()
+  }
+  return dataResult;
 }
-writeToJson3("quickSort" + len +"Result.json", JSON.stringify(dataResult));
+

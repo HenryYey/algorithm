@@ -9,5 +9,13 @@ module.exports = {
       else
         console.log("done");
     });
+  },
+  randomArray(n: number) {
+    const result = [];
+    for(let i = 0; i < n; i++) {
+      const num = Math.floor(Math.random() * n);    // 可均衡获取 0 到 n-1 的随机整数。
+      result.push(num);
+    }
+    return result;
   }
 }

@@ -42,20 +42,17 @@ var mergeSort = function (arr, low, high, tempArr) {
     merge(arr, low, mid, high, tempArr);
 };
 // 执行函数
-var main = function () {
-    var dataSource = [6, 3, 5, 7, 0, 9, 11, 4, 12];
+exports.mergeMain = function (dataSource) {
     var mergeLength = dataSource.length;
     var startTime1 = new Date();
     // 临时数组，用于将并好的数组放进去
     var tempArr = [];
     mergeSort(dataSource, 0, mergeLength - 1, tempArr);
-    console.log("fuck", dataSource);
     var endTime1 = new Date();
-    var mergeResult = {
+    var dataResult = {
         len: mergeLength,
         time: endTime1.getTime() - startTime1.getTime()
     };
-    writeToJson5("mergeSort" + mergeLength + "Result.json", JSON.stringify(mergeResult));
+    return dataResult;
 };
-main();
 //# sourceMappingURL=mergeSort.js.map

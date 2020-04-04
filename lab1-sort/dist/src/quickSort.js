@@ -1,4 +1,5 @@
 var writeToJson3 = require("../util/index").writeToJson;
+var randomArray3 = require("../util/index").randomArray;
 var baseIndex = function (arr, low, high) {
     // 定基准
     var base = arr[low];
@@ -23,15 +24,17 @@ var quickSort = function (dataSource, low, high) {
         quickSort(dataSource, base + 1, high);
     }
 };
-var data = [1, 22, 44, 4, 123123, 123, 10, 8];
-var len = data.length;
-var startTime = new Date();
-// 执行函数
-quickSort(data, 0, data.length - 1);
-var endTime = new Date();
-var dataResult = {
-    len: len,
-    time: endTime.getTime() - startTime.getTime()
+// 执行主函数
+exports.quickMain = function (data) {
+    var len = data.length;
+    var startTime = new Date();
+    // 执行函数
+    quickSort(data, 0, data.length - 1);
+    var endTime = new Date();
+    var dataResult = {
+        len: len,
+        time: endTime.getTime() - startTime.getTime()
+    };
+    return dataResult;
 };
-writeToJson3("quickSort" + len + "Result.json", JSON.stringify(dataResult));
 //# sourceMappingURL=quickSort.js.map

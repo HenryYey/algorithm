@@ -9,7 +9,6 @@ interface Result {
   time: number
 }
 
-
 // 合并
 const merge = (arr: Array<number>, low: number, mid: number, high: number, tempArr: Array<number>) => {
   if (low > mid || mid > high || arr.length === 0) return;
@@ -51,23 +50,18 @@ const mergeSort = (arr: Array<number>, low: number, high: number, tempArr: Array
   mergeSort(arr, mid + 1, high, tempArr);
   merge(arr, low, mid, high, tempArr);
 }
-// 执行函数
-const main = () => {
-  const dataSource = [6, 3, 5, 7, 0, 9, 11, 4, 12];
 
+// 执行函数
+exports.mergeMain = (dataSource: Array<number>) => {
   let mergeLength: number = dataSource.length;
   let startTime1: Date = new Date();
   // 临时数组，用于将并好的数组放进去
   const tempArr: Array<number> = [];
   mergeSort(dataSource, 0, mergeLength - 1, tempArr);
-  console.log("fuck", dataSource);
   let endTime1: Date = new Date();
-  const mergeResult: Result = {
+  const dataResult: Result = {
     len: mergeLength,
     time: endTime1.getTime() - startTime1.getTime()
   }
-  writeToJson5("mergeSort" + mergeLength + "Result.json", JSON.stringify(mergeResult));
+  return dataResult;
 }
-
-main();
-

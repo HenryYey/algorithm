@@ -1,5 +1,5 @@
 var writeToJson4 = require("../util/index").writeToJson;
-var insertSort = function (dataSource) {
+exports.insertSort = function (dataSource) {
     var len = dataSource.length;
     var startTime = new Date();
     // 函数主体
@@ -16,16 +16,12 @@ var insertSort = function (dataSource) {
         // 插入到j前面
         dataSource.splice(j, 0, current);
     }
-    // 打印数组
     var endTime = new Date();
     // 统计结果
     var dataResult = {
         len: len,
         time: endTime.getTime() - startTime.getTime()
     };
-    console.log(dataSource);
-    writeToJson4("insertSort" + len + "Result.json", JSON.stringify(dataResult));
+    return dataResult;
 };
-// 执行函数
-insertSort([6, 3, 5, 7, 0]);
 //# sourceMappingURL=insertSort.js.map
