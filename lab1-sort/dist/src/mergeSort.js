@@ -1,4 +1,6 @@
-var writeToJson5 = require("../util/index").writeToJson;
+/**
+ * 插入排序
+ */
 // 合并
 var merge = function (arr, low, mid, high, tempArr) {
     if (low > mid || mid > high || arr.length === 0)

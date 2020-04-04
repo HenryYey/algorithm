@@ -1,5 +1,6 @@
-var writeToJson3 = require("../util/index").writeToJson;
-var randomArray3 = require("../util/index").randomArray;
+/**
+ * 快速排序
+ */
 var baseIndex = function (arr, low, high) {
     // 定基准
     var base = arr[low];

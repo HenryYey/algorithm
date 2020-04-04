@@ -33,11 +33,11 @@ var main = function () {
                 var dataSource = randomArray(n);
                 // 分别将该量级下的五种排序结果存入容器
                 // tips: 深拷贝数组
-                bubbleResult.push(bubbleSort(dataSource.slice(0)));
+                selectResult.push(selectSort(dataSource.slice(0)));
                 insertResult.push(insertSort(dataSource.slice(0)));
+                bubbleResult.push(bubbleSort(dataSource.slice(0)));
                 quickResult.push(quickMain(dataSource.slice(0)));
                 mergeResult.push(mergeMain(dataSource.slice(0)));
-                selectResult.push(selectSort(dataSource.slice(0)));
                 console.log("\u3010\u6267\u884C\u5B8C\u6210\u3011\u7B2C" + i + "\u4E2A\u6837\u672C, \u91CF\u7EA7\u4E3A" + n);
             }
         }
@@ -50,9 +50,9 @@ main();
 // 将结果写入文件
 var result = {
     selectResult: selectResult,
+    bubbleResult: bubbleResult,
     insertResult: insertResult,
     mergeResult: mergeResult,
-    bubbleResult: bubbleResult,
     quickResult: quickResult
 };
 writeToJson("result.json", JSON.stringify(result));

@@ -1,4 +1,6 @@
-var writeToJson4 = require("../util/index").writeToJson;
+/**
+ * 插入排序
+ */
 exports.insertSort = function (dataSource) {
     var len = dataSource.length;
     var startTime = new Date();

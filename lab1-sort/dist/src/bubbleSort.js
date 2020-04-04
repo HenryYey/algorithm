@@ -1,4 +1,6 @@
-var writeToJson2 = require("../util/index").writeToJson;
+/**
+ * 冒泡排序
+ */
 exports.bubbleSort = function (dataSource) {
     var len = dataSource.length;
     var startTime = new Date();
