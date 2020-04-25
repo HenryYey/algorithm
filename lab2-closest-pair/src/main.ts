@@ -7,6 +7,7 @@
  * 导入函数
  */
 const { exhaustivityMain } = require("./exhaustivity");
+const { mergeMain } = require("./merge");
 const { writeToJson, randomArray} = require("../util/index");
 
 /**
@@ -14,7 +15,7 @@ const { writeToJson, randomArray} = require("../util/index");
  */
 
 let exhaustivityResult: Array<Object> = [];
-let quickResult: Array<Object> = [];
+let mergeResult: Array<Object> = [];
 
 /**
  * main 主函数
@@ -27,10 +28,12 @@ const main = () => {
       const n = j * 100000;
       // 产生随机数组
       const dataSource = randomArray(n);
-      exhaustivityResult.push(exhaustivityMain(dataSource));
+      // exhaustivityResult.push(exhaustivityMain(dataSource));
+      mergeResult.push(mergeMain(dataSource));
     }    
-    writeToJson("exhuastivity.json", JSON.stringify(exhaustivityResult));
-  } catch (e) {
+    // writeToJson("exhuastivity.json", JSON.stringify(exhaustivityResult));
+    writeToJson("merge.json", JSON.stringify(mergeResult));
+} catch (e) {
     console.log("【执行失败】", e);
   }
 }
@@ -38,7 +41,3 @@ const main = () => {
 main();
 
 // 将结果写入文件
-const result = {
-  quickResult
-}
-writeToJson("result.json", JSON.stringify(result));

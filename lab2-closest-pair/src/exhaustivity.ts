@@ -32,10 +32,7 @@ const exhaustivity = (dataSource: Array<Point>) => {
       // 根据勾股定理计算两者距离
       const xDistance = Math.abs(dataSource[i].x - dataSource[j].x); // 计算两点x绝对值
       const yDistance = Math.abs(dataSource[i].y - dataSource[j].y); // 计算两点y绝对值
-      let r;
-      if (xDistance === 0) r = yDistance;
-      else if (yDistance === 0) r = xDistance;
-      else r = Math.abs(xDistance * xDistance + yDistance * yDistance); // 计算两点距离
+      const r = Math.sqrt(xDistance * xDistance + yDistance * yDistance); // 计算两点距离
 
       if (r < minDistance) {
         // 记录该点

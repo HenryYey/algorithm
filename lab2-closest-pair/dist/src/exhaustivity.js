@@ -12,13 +12,7 @@ var exhaustivity = function (dataSource) {
             // 根据勾股定理计算两者距离
             var xDistance = Math.abs(dataSource[i].x - dataSource[j].x); // 计算两点x绝对值
             var yDistance = Math.abs(dataSource[i].y - dataSource[j].y); // 计算两点y绝对值
-            var r = void 0;
-            if (xDistance === 0)
-                r = yDistance;
-            else if (yDistance === 0)
-                r = xDistance;
-            else
-                r = Math.abs(xDistance * xDistance + yDistance * yDistance); // 计算两点距离
+            var r = Math.sqrt(xDistance * xDistance + yDistance * yDistance); // 计算两点距离
             if (r < minDistance) {
                 // 记录该点
                 minPoint.x1 = dataSource[i].x;

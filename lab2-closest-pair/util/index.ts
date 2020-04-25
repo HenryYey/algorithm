@@ -17,7 +17,9 @@ module.exports = {
         console.log("done");
     });
   },
+  /* 生成长度为n的随机点对数组 */
   randomArray(n: number) {
+    // 点对集合
     const points: Point[] = [];
     for(let i = 0; i < n; i++) {
       let x = Math.random() * n;    // 可随机获取 0 到 n-1 的随机整数。

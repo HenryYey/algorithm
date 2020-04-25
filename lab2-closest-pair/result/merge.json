@@ -1,0 +1,17 @@
+[{
+  "len": 100000,
+  "time": 101,
+  "minDistance": 0
+}, {
+  "len": 400000,
+  "time": 405,
+  "minDistance": 0
+}, {
+  "len": 700000,
+  "time": 695,
+  "minDistance": 0
+}, {
+  "len": 1000000,
+  "time": 1035,
+  "minDistance": 0
+}]

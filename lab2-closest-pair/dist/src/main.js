@@ -6,12 +6,13 @@
  * 导入函数
  */
 var exhaustivityMain = require("./exhaustivity").exhaustivityMain;
+var mergeMain = require("./merge").mergeMain;
 var _a = require("../util/index"), writeToJson = _a.writeToJson, randomArray = _a.randomArray;
 /**
  * 结果容器
  */
 var exhaustivityResult = [];
-var quickResult = [];
+var mergeResult = [];
 /**
  * main 主函数
  */
@@ -23,9 +24,11 @@ var main = function () {
             var n = j * 100000;
             // 产生随机数组
             var dataSource = randomArray(n);
-            exhaustivityResult.push(exhaustivityMain(dataSource));
+            // exhaustivityResult.push(exhaustivityMain(dataSource));
+            mergeResult.push(mergeMain(dataSource));
         }
-        writeToJson("exhuastivity.json", JSON.stringify(exhaustivityResult));
+        // writeToJson("exhuastivity.json", JSON.stringify(exhaustivityResult));
+        writeToJson("merge.json", JSON.stringify(mergeResult));
     }
     catch (e) {
         console.log("【执行失败】", e);
@@ -33,8 +36,4 @@ var main = function () {
 };
 main();
 // 将结果写入文件
-var result = {
-    quickResult: quickResult
-};
-writeToJson("result.json", JSON.stringify(result));
 //# sourceMappingURL=main.js.map
