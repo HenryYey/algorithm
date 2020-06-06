@@ -1,0 +1,3 @@
+int a = 7; // hello world
+int b = 8;
+int c = 1 + a;
