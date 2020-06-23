@@ -21,6 +21,8 @@ export interface Nodes {
 
 }
 
+const MAX_NUM = 65536; // 定义最大数，表示没有路径可以到达
+
 /**RDF图实例 */
 export class RDF {
   /** RDF图顶点实例 */
@@ -71,9 +73,10 @@ export class RDF {
    * @param level 深度
    */
   DFS(from: Node, key: string, level: number) {
-    if (!from) return -1;
+    if (!from) return MAX_NUM;
+    // 优化点1: 如果比之前找的还要长，肯定不是skyline地点，所以此时直接退出递归
     if (typeof this.min_key_before[key] !== "undefined" && this.min_key_before[key] < level) {
-      return -1; // 如果比之前找的还要长，肯定不是skyline地点，所以此时直接退出递归
+      return MAX_NUM; 
     }
     if (from.keys.includes(key)) {
 
@@ -81,16 +84,16 @@ export class RDF {
       return level;
     }
 
-    let result = -1;
+    let result = MAX_NUM;
 
     if (!from.visitied) {
       from.visitied = true;
       for (let i = 0; i <  from.nexts.length; i++) {
         const nextLevel = level + 1;
         const nextNode = this.nodes[from.nexts[i]];
-
-        result = this.DFS(nextNode, key, nextLevel); // 找到了就立马返回
-        if (result > -1) break;
+        // 优化点2: 找到了就立马返回
+        result = this.DFS(nextNode, key, nextLevel); 
+        if (result !== MAX_NUM) break;
       }
     }
 
@@ -107,7 +110,9 @@ export class RDF {
 /** main函数 */
 function main () {
 /** 实例化参数 */
+  console.log("---------题目1--------");
   const rdf = new RDF(edge_1, node_keywords_1);
+  const start1 = Date.now();
   /**关键词集合 */
   const keys = ["scientific", "childhood"];
   keys.forEach((key: string) => {
@@ -117,16 +122,18 @@ function main () {
       !!i && rdf.clearVisitied();
       const pname = rdf.source_nodes[i];
       const result = rdf.DFS(rdf.nodes[pname], key, 0);
-      if (result === -1) continue;
+      if (result === MAX_NUM) continue; // 没查到的就不输出
       console.log(`(dg(T${rdf.source_nodes[i]}, ${key})=`, result);
     }
   });
-
+  const end1 = Date.now();
+  console.log("问题1耗时: ", end1 - start1);
   console.log("---------题目2--------");
-  const start = Date.now();
   const rdf2 = new RDF(edge_2, node_keywords_2);
+  const start2 = Date.now();
+
   /**关键词集合 */
-  const keys2 = ["11674756", "10376090"];
+  const keys2 = ["11381939", "8422201"];
   keys2.forEach((key: string) => {
     /** 对源点进行深度优先搜索 */
     for (let i = 0; i < rdf2.source_nodes.length; i++) {
@@ -134,13 +141,13 @@ function main () {
       !!i && rdf2.clearVisitied();
       const pname = rdf2.source_nodes[i];
       const result = rdf2.DFS(rdf2.nodes[pname], key, 0);
-      if (result === -1) continue;
+      if (result === MAX_NUM) continue;
       
       console.log(`(dg(T${rdf2.source_nodes[i]}, ${key})=`, result);
     }
   });
-  const end = Date.now();
+  const end2 = Date.now();
 
-  console.log("问题2耗时: ", end - start);
+  console.log("问题2耗时: ", end2 - start2);
 }
 main();
