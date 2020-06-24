@@ -74,9 +74,9 @@ export class RDF {
    */
   DFS(from: Node, key: string, level: number) {
     if (!from) return MAX_NUM;
-    // 优化点1: 如果比之前找的还要长，肯定不是skyline地点，所以此时直接退出递归
+    // 优化点1: 如果比之前找的还要长，肯定不是skyline地点，所以此时直接退出递归并记录
     if (typeof this.min_key_before[key] !== "undefined" && this.min_key_before[key] < level) {
-      return MAX_NUM; 
+      return MAX_NUM - 1; 
     }
     if (from.keys.includes(key)) {
 
@@ -123,9 +123,13 @@ function main () {
       const pname = rdf.source_nodes[i];
       const result = rdf.DFS(rdf.nodes[pname], key, 0);
       if (result === MAX_NUM) continue; // 没查到的就不输出
+      if (result === MAX_NUM - 1) {
+        continue;
+      }
       console.log(`(dg(T${rdf.source_nodes[i]}, ${key})=`, result);
     }
   });
+
   const end1 = Date.now();
   console.log("问题1耗时: ", end1 - start1);
   console.log("---------题目2--------");
@@ -133,20 +137,33 @@ function main () {
   const start2 = Date.now();
 
   /**关键词集合 */
-  const keys2 = ["11381939", "8422201"];
+  const keys2 = ["8704841", "8762341"];
+  let notSkylinePoint: string[] = []; // 源点不是skyline点的集合
+  let skylinePoint: any = {} // 源点是skyline点的集合
+
   keys2.forEach((key: string) => {
+    rdf2.source_nodes.forEach(point => {
+      skylinePoint[point] = {...skylinePoint[point]};
+    });
     /** 对源点进行深度优先搜索 */
     for (let i = 0; i < rdf2.source_nodes.length; i++) {
-      // 每个源点遍历完都要清理一遍visited
-      !!i && rdf2.clearVisitied();
       const pname = rdf2.source_nodes[i];
+      const pointResult = skylinePoint[pname];
+      if (notSkylinePoint.includes(pname)) continue; // 如果在之前的运算中，已经证明了不是skyLine点，直接跳过
+      !!i && rdf2.clearVisitied();
       const result = rdf2.DFS(rdf2.nodes[pname], key, 0);
       if (result === MAX_NUM) continue;
+      if (result === MAX_NUM - 1) {
+        notSkylinePoint.push(pname); 
+        continue;
+      }
       
-      console.log(`(dg(T${rdf2.source_nodes[i]}, ${key})=`, result);
+      pointResult[key] = result;
+      console.log(`(dg(T${pname}, ${key})=`, result);
     }
   });
   const end2 = Date.now();
+  console.log("问题2源点 ", rdf2.source_nodes);
 
   console.log("问题2耗时: ", end2 - start2);
 }
